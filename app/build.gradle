@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.chefless.ela.urbanweather"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        prod {
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:26.0.0-alpha1'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.google.guava:guava:20.0'
+    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+
+
+    testCompile 'junit:junit:4.12'
+    // Testing-only dependencies
+
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+
+    // Espresso dependencies
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    //androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
+    //androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
+    //androidTestCompile 'com.android.support.test.espresso:espresso-accessibility:2.2.2'
+    //androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2.2'
+    //androidTestCompile 'com.android.support.test.espresso.idling:idling-concurrent:2.2.2'
+//
+    //androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
+
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockito"
+    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powerMockito"
+
+
+    androidTestCompile 'com.android.support:support-annotations:26.0.0-alpha1';
+    androidTestCompile 'com.android.support:recyclerview-v7:26.0.0-alpha1';
+
+    configurations.all {
+        resolutionStrategy.force "com.android.support:support-annotations:26.0.0-alpha1"
+    }
+
+    configurations.compile.dependencies.each { compileDependency ->
+        println "Excluding compile dependency: ${compileDependency.getName()}"
+        configurations.androidTestCompile.dependencies.each { androidTestCompileDependency ->
+            configurations.androidTestCompile.exclude module: "${compileDependency.getName()}"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Urban Weather</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="title_activity_detail">Forecast Detail</string>
+    <string name="loading_forecasts_error">Error while loading forecasts</string>
+    <string name="no_forecasts_all">You have no forecast data!</string>
+    <string name="temperature">Temperature:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="windSpeed">Wind Speed:</string>
+    <string name="rain">Rain:</string>
+    <string name="no_data">No data</string>
+    <string name="Berlin">Berlin</string>
+</resources>

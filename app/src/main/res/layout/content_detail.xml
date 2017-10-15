@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.chefless.ela.urbanweather.detailforecast.DetailActivity"
+    tools:showIn="@layout/activity_detail">
+
+    <data>
+        <variable
+            name="forecast"
+            type="com.chefless.ela.urbanweather.data.CityForecast"/>
+
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:text="@{forecast.name}"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:padding="@dimen/list_item_padding"
+        tools:text="Paris"
+        android:background="@drawable/title_background"
+        />
+
+    <TextView
+        android:id="@+id/tv_weather_main"
+        android:text="@{forecast.weather[0].main}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:text="Bit cloudy"
+        android:padding="@dimen/list_item_padding"
+        android:layout_below="@+id/tv_name"
+        />
+
+    <TextView
+        android:id="@+id/tv_weather_desc"
+        android:text="@{forecast.weather[0].description}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        tools:text="Clear to partly cloudy"
+        android:layout_below="@+id/tv_weather_main"
+        android:padding="@dimen/list_item_padding"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_temp_label"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:text="@string/temperature"
+        android:layout_below="@+id/tv_weather_desc"
+        android:layout_marginBottom="5dp"
+        android:padding="@dimen/list_item_padding"
+        />
+
+    <TextView
+        android:id="@+id/tv_temp"
+        android:text='@{String.valueOf(forecast.main.temp) + "° Celsius"}'
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:text="20 degrees"
+        android:layout_alignRight="@+id/tv_temp_label"
+        android:layout_below="@+id/tv_weather_desc"
+        android:layout_marginBottom="5dp"
+        android:padding="@dimen/list_item_padding"
+        />
+
+    <TextView
+        android:id="@+id/tv_humidity_label"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:text="@string/humidity"
+        android:layout_below="@+id/tv_temp"
+        android:layout_marginBottom="5dp"
+        android:padding="@dimen/list_item_padding"
+        />
+
+    <TextView
+        android:id="@+id/tv_humidity"
+        android:text='@{String.valueOf(forecast.main.humidity) + "%"}'
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:text="70%"
+        android:layout_alignRight="@+id/tv_humidity_label"
+        android:layout_below="@+id/tv_temp"
+        android:layout_marginBottom="5dp"
+        android:padding="@dimen/list_item_padding"
+        />
+
+    <TextView
+        android:id="@+id/tv_windspeed_label"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:text="@string/windSpeed"
+        android:layout_below="@+id/tv_humidity"
+        android:layout_marginBottom="5dp"
+        android:padding="@dimen/list_item_padding"
+        />
+
+    <TextView
+        android:id="@+id/tv_windspeed"
+        android:text='@{String.valueOf(forecast.wind.speed) + " meter/sec"}'
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:text="70%"
+        android:layout_alignRight="@+id/tv_windspeed_label"
+        android:layout_below="@+id/tv_humidity"
+        android:layout_marginBottom="5dp"
+        android:padding="@dimen/list_item_padding"
+        />
+
+    <ProgressBar
+        android:id="@+id/pb_loading_data"
+        android:layout_height="42dp"
+        android:layout_width="42dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>
+</layout>
